@@ -1,4 +1,4 @@
-# WhimsyLists - WeChat Mini Program (H5)
+# WhimsyLists - WeChat Mini Program (Hybrid)
 
 A collaborative list-making app with a Sanrio x Ghibli aesthetic.
 
@@ -9,45 +9,37 @@ A collaborative list-making app with a Sanrio x Ghibli aesthetic.
     npm install
     ```
 
-2.  **Set Environment Variable**:
-    Create a `.env` file in the root directory (or set it in your deployment platform) to enable AI suggestions:
-    ```
-    VITE_API_KEY=your_google_gemini_api_key
-    ```
-    *Note: If testing strictly locally without a build server, you may need to manually set `process.env.API_KEY = '...'` in the `index.html` script tag for quick testing, though this is not recommended for production.*
-
-3.  **Run Development Server**:
+2.  **Start the React App**:
+    You must start the local server first so the Mini Program wrapper can load it.
     ```bash
     npm run dev
     ```
+    *Runs on http://localhost:5173*
 
-## 📦 Build for WeChat Deployment
+3.  **Open in WeChat DevTools**:
+    *   Open WeChat DevTools.
+    *   Import this project folder.
+    *   **Important**: In the DevTools toolbar, go to **Details (详情) > Local Settings (本地设置)** and check **"Does not verify valid domain names, web-view (domains), TLS versions and HTTPS certificates"**.
+    *   The simulator should now show your React app running inside the shell.
 
-To deploy this as a WeChat Mini Program, we use the **Web-View** method, as this is a React Web App.
+## 📦 Deployment
 
-1.  **Build the Project**:
-    ```bash
-    npm run build
+To deploy to production:
+
+1.  **Deploy the Web App**:
+    Run `npm run build` and host the `dist` folder on a secure server (HTTPS), e.g., Vercel, Netlify.
+
+2.  **Update the Wrapper**:
+    Open `miniprogram/pages/index/index.js` and update the `url` variable to your production URL:
+    ```javascript
+    url: 'https://your-whimsy-list-app.vercel.app'
     ```
-    This will generate a `dist` folder.
 
-2.  **Host the App**:
-    Upload the contents of the `dist` folder to a secure web server (must be **HTTPS**).
-    *Examples: Vercel, Netlify, GitHub Pages, or your own server.*
-
-3.  **WeChat Mini Program Setup**:
-    *   Open **WeChat DevTools**.
-    *   Create a new Mini Program project.
-    *   In `app.json`, ensure you have permission to use web-views.
-    *   In your main page (e.g., `pages/index/index.wxml`), add:
-        ```xml
-        <web-view src="https://your-deployed-url.com"></web-view>
-        ```
-    *   **Important**: Log in to the WeChat Official Accounts Platform (mp.weixin.qq.com), go to **Development > Development Settings > Business Domain**, and add your website's domain to the allowlist.
+3.  **Upload Mini Program**:
+    In WeChat DevTools, click **Upload** to submit the Mini Program shell.
 
 ## 🛠 Project Structure
 
-*   `src/` (Implied root): React source code.
-*   `services/storageService.ts`: Handles data persistence (simulating a database using LocalStorage).
-*   `services/geminiService.ts`: Google Gemini AI integration.
-*   `project.config.json`: Configuration for WeChat DevTools recognition.
+*   `src/`: **The React Web App** (UI, Logic, AI).
+*   `miniprogram/`: **The Native Wrapper**. Contains the `app.json` and `web-view` bridge required by WeChat.
+*   `project.config.json`: Tells WeChat DevTools to use `miniprogram/` as the root.

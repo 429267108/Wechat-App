@@ -1,5 +1,5 @@
 {
-  "description": "WhimsyLists Web App",
+  "description": "WhimsyLists Hybrid App",
   "packOptions": {
     "ignore": []
   },
@@ -37,10 +37,11 @@
     "minifyWXSS": true,
     "showES6CompileOption": false
   },
-  "compileType": "h5",
+  "compileType": "miniprogram",
   "libVersion": "2.19.4",
   "appid": "touristappid",
   "projectname": "whimsylists",
+  "miniprogramRoot": "miniprogram/",
   "debugOptions": {
     "hidedInDevtools": []
   },
