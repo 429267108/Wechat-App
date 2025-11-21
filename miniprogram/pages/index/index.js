@@ -1,6 +1,6 @@
 Page({
   data: {
-    // FOR DEVELOPMENT: Point to your local Vite server
+    // FOR DEVELOPMENT: Point to your local Vite server (usually port 5173)
     // Ensure you check "Does not verify valid domain names..." in DevTools settings
     url: 'http://localhost:5173' 
     
@@ -9,5 +9,9 @@ Page({
   },
   onLoad: function (options) {
     console.log('WebView loading:', this.data.url);
+  },
+  onMessage: function(e) {
+    // Capture messages sent from the web app (if any)
+    console.log('Message from Webview:', e.detail);
   }
 })

@@ -22,6 +22,17 @@ A collaborative list-making app with a Sanrio x Ghibli aesthetic.
     *   **Important**: In the DevTools toolbar, go to **Details (详情) > Local Settings (本地设置)** and check **"Does not verify valid domain names, web-view (domains), TLS versions and HTTPS certificates"**.
     *   The simulator should now show your React app running inside the shell.
 
+## ❓ Troubleshooting
+
+### Blank White Screen?
+*   **Check Server**: Is `npm run dev` running in your terminal?
+*   **Check Settings**: Did you enable "Does not verify valid domain names..." in Local Settings?
+*   **Check URL**: Ensure `miniprogram/pages/index/index.js` has the correct port (default is 5173).
+
+### "Trace is not defined" or Render Layer Errors?
+*   Ensure your `project.config.json` has `"libVersion": "3.2.5"` (or higher).
+*   Ensure `miniprogram/pages/index/index.wxml` exists and contains the `<web-view>` tag.
+
 ## 📦 Deployment
 
 To deploy to production:
