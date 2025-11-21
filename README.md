@@ -5,6 +5,7 @@ A collaborative list-making app with a Sanrio x Ghibli aesthetic.
 ## 🚀 Setup & Run Locally
 
 1.  **Install Dependencies**:
+    **Crucial Step**: You must run this command to install Vite and React.
     ```bash
     npm install
     ```
@@ -23,6 +24,12 @@ A collaborative list-making app with a Sanrio x Ghibli aesthetic.
     *   The simulator should now show your React app running inside the shell.
 
 ## ❓ Troubleshooting
+
+### "sh: vite: command not found"
+This means you haven't installed the project dependencies yet.
+*   Open your terminal in the project folder.
+*   Run `npm install`.
+*   Then try `npm run dev` again.
 
 ### Blank White Screen?
 *   **Check Server**: Is `npm run dev` running in your terminal?
