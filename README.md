@@ -20,7 +20,10 @@ A collaborative list-making app with a Sanrio x Ghibli aesthetic.
 3.  **Open in WeChat DevTools**:
     *   Open WeChat DevTools.
     *   Import this project folder.
-    *   **Important**: In the DevTools toolbar, go to **Details (详情) > Local Settings (本地设置)** and check **"Does not verify valid domain names, web-view (domains), TLS versions and HTTPS certificates"**.
+    *   **CRITICAL STEP (Fixing White Screen)**: 
+        1.  In the DevTools Top Toolbar, click **"Details" (详情)** (usually on the top right).
+        2.  Click the **"Local Settings" (本地设置)** tab.
+        3.  Check the box: **"Does not verify valid domain names, web-view (domains), TLS versions and HTTPS certificates"** (不校验合法域名、web-view（业务域名）、TLS版本以及HTTPS证书).
     *   The simulator should now show your React app running inside the shell.
 
 ## ❓ Troubleshooting
@@ -32,8 +35,8 @@ This means you haven't installed the project dependencies yet.
 *   Then try `npm run dev` again.
 
 ### Blank White Screen?
+*   **Check Local Settings**: This is the #1 cause. Ensure you checked "Does not verify valid domain names..." (see step 3 above). The Mini Program blocks `localhost` connections otherwise.
 *   **Check Server**: Is `npm run dev` running in your terminal?
-*   **Check Settings**: Did you enable "Does not verify valid domain names..." in Local Settings?
 *   **Check URL**: Ensure `miniprogram/pages/index/index.js` has the correct port (default is 5173).
 
 ### "Trace is not defined" or Render Layer Errors?
@@ -52,6 +55,7 @@ To deploy to production:
     ```javascript
     url: 'https://your-whimsy-list-app.vercel.app'
     ```
+    *Note: In production, you must add this domain to your WeChat Admin Console whitelist.*
 
 3.  **Upload Mini Program**:
     In WeChat DevTools, click **Upload** to submit the Mini Program shell.
