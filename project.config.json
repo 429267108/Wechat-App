@@ -38,7 +38,7 @@
     "showES6CompileOption": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.4",
+  "libVersion": "3.2.5",
   "appid": "touristappid",
   "projectname": "whimsylists",
   "miniprogramRoot": "miniprogram/",
