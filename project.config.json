@@ -38,10 +38,11 @@
     "showES6CompileOption": false
   },
   "compileType": "miniprogram",
-  "libVersion": "3.2.5",
-  "appid": "touristappid",
-  "projectname": "whimsylists",
+  "libVersion": "3.11.3",
+  "appid": "wx74eecea393c8379b",
+  "projectname": "quickstart-wx-cloud",
   "miniprogramRoot": "miniprogram/",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
   "debugOptions": {
     "hidedInDevtools": []
   },
