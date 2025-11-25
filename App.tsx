@@ -636,7 +636,11 @@ export default function App() {
             <CuteButton variant="secondary" onClick={() => setShowNoteModal(false)} className="flex-1">
               Cancel
             </CuteButton>
-            <CuteButton onClick={handleSaveNote} className="flex-1">
+            <CuteButton 
+              onClick={handleSaveNote} 
+              className={`flex-1 transition-all duration-300 ${noteInput.trim() ? 'shadow-md scale-105' : 'opacity-90'}`}
+              variant={noteInput.trim() ? 'primary' : 'secondary'}
+            >
               Save Note
             </CuteButton>
           </div>
