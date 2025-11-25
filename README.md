@@ -1,59 +1,20 @@
-# WhimsyLists - WeChat Mini Program (Hybrid)
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-A collaborative list-making app with a Sanrio x Ghibli aesthetic.
+# Run and deploy your AI Studio app
 
-## 🚀 Quick Start (Local Dev)
+This contains everything you need to run your app locally.
 
-1.  **Install Dependencies**:
-    ```bash
-    npm install
-    ```
+View your app in AI Studio: https://ai.studio/apps/drive/1GN0vugq0bCpxjSFLZpp3_E8XNK7DAlPn
 
-2.  **Start React Server**:
-    ```bash
-    npm run dev
-    ```
+## Run Locally
 
-3.  **Open WeChat DevTools**:
-    *   Import this folder.
-    *   **Settings -> Local Settings**: Check "Does not verify valid domain names".
-    *   The app should load `http://localhost:5173`.
+**Prerequisites:**  Node.js
 
----
 
-## 🚢 How to Deploy (Production)
-
-Since this is a Hybrid App (Web View), you **do not** use "Build NPM".
-
-### Step 1: Deploy Web App
-1.  Run `npm run build`.
-2.  Upload the `dist/` folder to a secure host (Vercel, Netlify, etc.).
-3.  **Result**: You get a URL like `https://myapp.com`.
-
-### Step 2: Whitelist Domain
-1.  Log in to [WeChat Admin](https://mp.weixin.qq.com/).
-2.  Go to **Development Settings** > **Business Domain**.
-3.  Add `myapp.com`.
-
-### Step 3: Update Wrapper
-1.  Open `miniprogram/pages/index/index.js`.
-2.  Change `url` to your production URL:
-    ```javascript
-    url: 'https://myapp.com'
-    ```
-
-### Step 4: Upload
-1.  In WeChat DevTools, click **Upload** (Top Right).
-2.  Submit for audit in WeChat Admin.
-
----
-
-## ❓ Troubleshooting
-
-### "NPM packages not found"
-*   **Ignore this.** Do not click "Build NPM". 
-*   Your dependencies are managed by Vite (`npm install`), not WeChat.
-
-### White Screen?
-*   **Dev**: Check "Does not verify valid domain names" in Local Settings.
-*   **Prod**: Ensure your domain is whitelisted in WeChat Admin.
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

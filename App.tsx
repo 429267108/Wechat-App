@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { 
   initStorage, getCurrentUser, loginAsUser, logout, 
@@ -11,7 +10,12 @@ import { CuteButton, Card, Avatar, Badge, Modal } from './components/Shared';
 
 // --- Screens & Components ---
 
-const LoginScreen: React.FC<{ users: User[]; onLogin: (uid: string) => void }> = ({ users, onLogin }) => (
+interface LoginScreenProps {
+  users: User[];
+  onLogin: (uid: string) => void;
+}
+
+const LoginScreen = ({ users, onLogin }: LoginScreenProps) => (
   <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-[#fefbf5] relative overflow-hidden">
     {/* Background Decor */}
     <div className="absolute top-0 left-0 w-64 h-64 bg-sanrio-pink/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
@@ -49,11 +53,13 @@ const LoginScreen: React.FC<{ users: User[]; onLogin: (uid: string) => void }> =
   </div>
 );
 
-const ListCard: React.FC<{ 
-  list: ListData; 
-  currentUser: User; 
-  onClick: () => void; 
-}> = ({ list, currentUser, onClick }) => {
+interface ListCardProps {
+  list: ListData;
+  currentUser: User;
+  onClick: () => void;
+}
+
+const ListCard = ({ list, currentUser, onClick }: ListCardProps) => {
   const isOwner = list.ownerId === currentUser.id;
   const permission = list.sharedWith.find(s => s.userId === currentUser.id)?.permission;
   const itemCount = list.items.filter(i => !i.completed).length;

@@ -1,11 +1,15 @@
 import React from 'react';
 
-export const CuteButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'secondary' | 'wechat' | 'danger' | 'ghost' }> = ({ 
+interface CuteButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'wechat' | 'danger' | 'ghost';
+}
+
+export const CuteButton = ({ 
   children, variant = 'primary', className = '', ...props 
-}) => {
+}: CuteButtonProps) => {
   const baseStyle = "px-5 py-3 rounded-3xl font-display font-bold transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 shadow-sm";
   
-  const variants = {
+  const variants: Record<string, string> = {
     primary: "bg-gradient-to-r from-sanrio-pink to-[#ffcfd8] text-white shadow-sanrio-pink/30 hover:shadow-sanrio-pink/50",
     secondary: "bg-white text-slate-600 border border-slate-100 hover:bg-slate-50",
     wechat: "bg-[#07C160] text-white shadow-[#07C160]/30 hover:bg-[#06ad56]",
@@ -14,20 +18,31 @@ export const CuteButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> 
   };
 
   return (
-    <button className={`${baseStyle} ${variants[variant]} ${className}`} {...props}>
+    <button className={`${baseStyle} ${variants[variant] || variants.primary} ${className}`} {...props}>
       {children}
     </button>
   );
 };
 
-export const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
+interface CardProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const Card = ({ children, className = '' }: CardProps) => (
   <div className={`bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-50 ${className}`}>
     {children}
   </div>
 );
 
-export const Avatar: React.FC<{ url: string; name: string; size?: 'sm' | 'md' | 'lg' | 'xl' }> = ({ url, name, size = 'md' }) => {
-  const sizes = {
+interface AvatarProps {
+  url: string;
+  name: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+}
+
+export const Avatar = ({ url, name, size = 'md' }: AvatarProps) => {
+  const sizes: Record<string, string> = {
     sm: "w-8 h-8 border-2",
     md: "w-12 h-12 border-[3px]",
     lg: "w-20 h-20 border-4",
@@ -44,15 +59,27 @@ export const Avatar: React.FC<{ url: string; name: string; size?: 'sm' | 'md' | 
   );
 };
 
-export const Badge: React.FC<{ children: React.ReactNode; color?: string }> = ({ children, color = "bg-gray-100" }) => (
+interface BadgeProps {
+  children: React.ReactNode;
+  color?: string;
+}
+
+export const Badge = ({ children, color = "bg-gray-100" }: BadgeProps) => (
   <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${color}`}>
     {children}
   </span>
 );
 
-export const Modal: React.FC<{ isOpen: boolean; onClose: () => void; title?: string; children: React.ReactNode }> = ({ 
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  children: React.ReactNode;
+}
+
+export const Modal = ({ 
   isOpen, onClose, title, children 
-}) => {
+}: ModalProps) => {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4">

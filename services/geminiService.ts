@@ -1,20 +1,12 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const getClient = () => {
-  const apiKey = process.env.API_KEY;
-  if (!apiKey) {
-    console.warn("API Key not found");
-    return null;
-  }
-  return new GoogleGenAI({ apiKey });
-};
+// Guideline: Always use const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
+// We assume process.env.API_KEY is available and valid.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const suggestListItems = async (listTitle: string, listType: string): Promise<string[]> => {
-  const client = getClient();
-  if (!client) return ["API Key Missing", "Check Setup"];
-
   try {
-    const response = await client.models.generateContent({
+    const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: `Generate 5 creative and cute items for a ${listType} titled "${listTitle}". Keep them short (under 6 words). Return as a JSON array of strings.`,
       config: {
