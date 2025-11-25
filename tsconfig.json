@@ -21,8 +21,8 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Types */
-    "types": ["node", "vite/client"]
+    "types": ["vite/client"]
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "global.d.ts", "vite-env.d.ts"],
   "exclude": ["node_modules", "miniprogram", "dist"]
 }
