@@ -1,19 +1,21 @@
 Page({
   data: {
-    // -------------------------------------------------------------------------
-    // DEPLOYMENT CONFIGURATION
-    // -------------------------------------------------------------------------
+    // =========================================================================
+    // 🚀 DEPLOYMENT CONFIGURATION
+    // =========================================================================
     
-    // STEP 1: For Local Development (npm run dev)
-    // Keep this uncommented while developing on your computer.
+    // OPTION 1: Local Development (npm run dev)
+    // Use this when running on your computer.
+    // Ensure "Does not verify valid domain names" is CHECKED in Local Settings.
     url: 'http://localhost:5173'
 
-    // STEP 2: For Production Deployment
-    // 1. Comment out the localhost line above.
-    // 2. Uncomment the line below and replace with your actual HTTPS URL.
-    // url: 'https://your-deployed-website.com'
+    // OPTION 2: Production (Deploy)
+    // 1. Comment out the line above.
+    // 2. Uncomment the line below.
+    // 3. Replace with your actual HTTPS website URL.
+    // url: 'https://YOUR-APP-URL.vercel.app'
     
-    // -------------------------------------------------------------------------
+    // =========================================================================
   },
   onLoad: function (options) {
     console.log('WebView loading:', this.data.url);
@@ -23,7 +25,6 @@ Page({
     console.log('Message from Webview:', e.detail);
   },
   onShareAppMessage(options) {
-    // Enable sharing the page to friends
     return {
       title: 'WhimsyLists',
       path: '/pages/index/index'
