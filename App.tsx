@@ -439,7 +439,16 @@ export default function App() {
                       {item.text}
                     </span>
                     {item.note && (
-                      <p className="text-xs text-slate-400 mt-1 italic flex items-center gap-1">
+                      <p 
+                        onClick={(e) => {
+                          if (!canEdit) return;
+                          e.stopPropagation();
+                          setCurrentNoteItem({ id: item.id, text: item.text, note: item.note || '' });
+                          setNoteInput(item.note || '');
+                          setShowNoteModal(true);
+                        }}
+                        className={`text-xs text-slate-400 mt-1 italic flex items-center gap-1 ${canEdit ? 'cursor-pointer hover:text-sanrio-blue' : ''}`}
+                      >
                         <svg className="w-3 h-3 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                         {item.note}
                       </p>
@@ -450,21 +459,23 @@ export default function App() {
                       <button 
                          onClick={() => handleUpdateItems(activeList.items.filter(i => i.id !== item.id))}
                          className="opacity-0 group-hover:opacity-100 p-2 text-slate-300 hover:text-red-400 transition-all"
+                         title="Delete Item"
                       >
                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                       </button>
-                      {item.completed && (
-                        <button 
-                          onClick={() => {
-                            setCurrentNoteItem({ id: item.id, text: item.text, note: item.note || '' });
-                            setNoteInput(item.note || '');
-                            setShowNoteModal(true);
-                          }}
-                          className="opacity-0 group-hover:opacity-100 p-2 text-slate-300 hover:text-sanrio-blue transition-all"
-                        >
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
-                        </button>
-                      )}
+                      
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentNoteItem({ id: item.id, text: item.text, note: item.note || '' });
+                          setNoteInput(item.note || '');
+                          setShowNoteModal(true);
+                        }}
+                        className={`p-2 transition-all ${item.note ? 'text-sanrio-blue opacity-100' : 'opacity-0 group-hover:opacity-100 text-slate-300 hover:text-sanrio-blue'}`}
+                        title="Add/Edit Note"
+                      >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -623,7 +634,7 @@ export default function App() {
           />
           <div className="flex gap-2">
             <CuteButton variant="secondary" onClick={() => setShowNoteModal(false)} className="flex-1">
-              Skip
+              Cancel
             </CuteButton>
             <CuteButton onClick={handleSaveNote} className="flex-1">
               Save Note
