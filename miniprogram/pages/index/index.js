@@ -1,19 +1,23 @@
 Page({
   data: {
     // =========================================================================
-    // 🚀 DEPLOYMENT CONFIGURATION
+    // 🚀 CONFIGURATION
     // =========================================================================
     
-    // OPTION 1: Local Development (npm run dev)
-    // Use this when running on your computer.
-    // Ensure "Does not verify valid domain names" is CHECKED in Local Settings.
+    // 💻 FOR COMPUTER SIMULATOR:
+    // Keep as 'http://localhost:5173'
+    // IMPORTANT: In DevTools > Details > Local Settings, CHECK "Does not verify valid domain names"
+    
+    // 📱 FOR REAL PHONE PREVIEW:
+    // 1. Find your computer's Local IP (e.g., 192.168.1.5)
+    // 2. Your phone and computer MUST be on the same WiFi.
+    // 3. Change the URL below:
+    // url: 'http://192.168.1.5:5173'
+    
     url: 'http://localhost:5173'
 
-    // OPTION 2: Production (Deploy)
-    // 1. Comment out the line above.
-    // 2. Uncomment the line below.
-    // 3. Replace with your actual HTTPS website URL.
-    // url: 'https://YOUR-APP-URL.vercel.app'
+    // ☁️ FOR PRODUCTION DEPLOYMENT:
+    // url: 'https://your-app-name.vercel.app'
     
     // =========================================================================
   },
@@ -21,7 +25,6 @@ Page({
     console.log('WebView loading:', this.data.url);
   },
   onMessage: function(e) {
-    // Capture messages sent from the web app (if any)
     console.log('Message from Webview:', e.detail);
   },
   onShareAppMessage(options) {
