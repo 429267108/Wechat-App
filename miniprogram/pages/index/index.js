@@ -1,11 +1,19 @@
 Page({
   data: {
-    // FOR DEVELOPMENT: Point to your local Vite server (usually port 5173)
-    // Ensure you check "Does not verify valid domain names..." in DevTools settings
-    url: 'http://localhost:5173' 
+    // -------------------------------------------------------------------------
+    // DEPLOYMENT CONFIGURATION
+    // -------------------------------------------------------------------------
     
-    // FOR PRODUCTION: Change this to your deployed URL (e.g. Vercel)
-    // url: 'https://your-app.vercel.app'
+    // STEP 1: For Local Development (npm run dev)
+    // Keep this uncommented while developing on your computer.
+    url: 'http://localhost:5173'
+
+    // STEP 2: For Production Deployment
+    // 1. Comment out the localhost line above.
+    // 2. Uncomment the line below and replace with your actual HTTPS URL.
+    // url: 'https://your-deployed-website.com'
+    
+    // -------------------------------------------------------------------------
   },
   onLoad: function (options) {
     console.log('WebView loading:', this.data.url);
@@ -13,5 +21,12 @@ Page({
   onMessage: function(e) {
     // Capture messages sent from the web app (if any)
     console.log('Message from Webview:', e.detail);
+  },
+  onShareAppMessage(options) {
+    // Enable sharing the page to friends
+    return {
+      title: 'WhimsyLists',
+      path: '/pages/index/index'
+    }
   }
 })

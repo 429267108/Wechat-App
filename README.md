@@ -43,22 +43,39 @@ This means you haven't installed the project dependencies yet.
 *   Ensure your `project.config.json` has `"libVersion": "3.2.5"` (or higher).
 *   Ensure `miniprogram/pages/index/index.wxml` exists and contains the `<web-view>` tag.
 
-## 📦 Deployment
+### NPM Error in WeChat DevTools?
+*   Ignore the "Build NPM" button in WeChat DevTools. 
+*   This is a hybrid app; all dependencies are managed by Vite (`npm install` in terminal), not by WeChat.
 
-To deploy to production:
+## 📦 Deployment Guide
 
-1.  **Deploy the Web App**:
-    Run `npm run build` and host the `dist` folder on a secure server (HTTPS), e.g., Vercel, Netlify.
+To deploy this app to real users, follow these 4 steps:
 
-2.  **Update the Wrapper**:
-    Open `miniprogram/pages/index/index.js` and update the `url` variable to your production URL:
+### 1. Build & Host the React App
+The "brains" of your app (the React code) must be hosted on a secure web server.
+1.  Run `npm run build`. This creates a `dist` folder.
+2.  Upload the `dist` folder to a static hosting provider (e.g., Vercel, Netlify, or Tencent Cloud Static Hosting).
+3.  **Result**: You get a URL like `https://my-app.com`.
+
+### 2. Whitelist Domain in WeChat
+1.  Log in to [WeChat Official Accounts Platform](https://mp.weixin.qq.com/).
+2.  Go to **Development Management (开发管理)** > **Development Settings (开发设置)**.
+3.  Find **Business Domain (业务域名)**.
+4.  Add your website URL (e.g., `my-app.com`).
+5.  *Note: You must download the verification file provided by WeChat and upload it to the root of your web server.*
+
+### 3. Update Mini Program Code
+1.  Open `miniprogram/pages/index/index.js`.
+2.  Comment out the `localhost` line.
+3.  Uncomment and set your production URL:
     ```javascript
-    url: 'https://your-whimsy-list-app.vercel.app'
+    url: 'https://my-app.com'
     ```
-    *Note: In production, you must add this domain to your WeChat Admin Console whitelist.*
 
-3.  **Upload Mini Program**:
-    In WeChat DevTools, click **Upload** to submit the Mini Program shell.
+### 4. Upload via DevTools
+1.  In WeChat DevTools, click **Upload (上传)** in the top right.
+2.  Enter version number and notes.
+3.  Go to the WeChat Admin panel to submit the version for audit.
 
 ## 🛠 Project Structure
 
