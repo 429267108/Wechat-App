@@ -1,3 +1,4 @@
+
 export enum Permission {
   OWNER = 'owner',
   EDITOR = 'editor',
@@ -15,6 +16,7 @@ export interface ListItem {
   id: string;
   text: string;
   completed: boolean;
+  note?: string;
 }
 
 export interface ListData {
